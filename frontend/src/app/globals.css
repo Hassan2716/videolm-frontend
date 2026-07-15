@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Scrollbar — theme adaptive */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.20); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(99,102,241,0.35); }
+.dark ::-webkit-scrollbar-thumb { background: rgba(129,140,248,0.20); }
+.dark ::-webkit-scrollbar-thumb:hover { background: rgba(129,140,248,0.35); }
+
+/* Dark theme */
+.dark { color-scheme: dark; }
+
+/* Card base utility — theme adaptive */
+.card-base {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(99,102,241,0.10);
+  box-shadow: 0 1px 3px rgba(99,102,241,0.04), 0 1px 2px rgba(0,0,0,0.03);
+}
+.dark .card-base {
+  background-color: #141B2D;
+  border: 1px solid rgba(129,140,248,0.12);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Glass effect — theme adaptive */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(99, 102, 241, 0.10);
+}
+.dark .glass {
+  background: rgba(10, 15, 30, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(129, 140, 248, 0.12);
+}
+
+/* Grid background — theme adaptive */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.dark .bg-grid {
+  background-image:
+    linear-gradient(rgba(129,140,248,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129,140,248,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Gradient text — premium indigo→violet→cyan */
+.gradient-text {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dark .gradient-text {
+  background: linear-gradient(135deg, #818CF8 0%, #A78BFA 50%, #22D3EE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.accent-gradient {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dark .accent-gradient {
+  background: linear-gradient(135deg, #818CF8 0%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+@keyframes pulse-ring {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.animate-fade-up { animation: fadeUp 0.4s ease both; }
+.shimmer-bar { position: relative; overflow: hidden; }
+.shimmer-bar::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.08), transparent);
+  animation: shimmer 1.8s infinite;
+}
+.dark .shimmer-bar::after {
+  background: linear-gradient(90deg, transparent, rgba(129,140,248,0.10), transparent);
+}
+.pulse-dot { animation: pulse-ring 1.5s ease-in-out infinite; }
+
+/* Prose for transcript — theme adaptive */
+.transcript-text { line-height: 1.8; }
+.transcript-text .ts-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: rgba(99,130,246,0.12);
+  color: #6366F1;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-right: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.transcript-text .ts-badge:hover { background: rgba(99,102,241,0.25); }
+.dark .transcript-text .ts-badge {
+  background: rgba(129,140,248,0.15);
+  color: #818CF8;
+}
+.dark .transcript-text .ts-badge:hover { background: rgba(129,140,248,0.30); }
+
